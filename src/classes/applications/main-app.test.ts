@@ -974,12 +974,14 @@ describe("Main App Class Tests", () => {
     test("Note Context Click", () => {
         const contextMenu = document.createElement("div");
         const action = document.createElement("div");
+        const icon = document.createElement("span");
 
         contextMenu.classList.add("fsc-context-menu");
         action.classList.add("fsc-context-list-action");
 
         contextMenu.setAttribute("data-id", "asd");
         action.setAttribute("data-action", "showPlayers");
+        action.append(icon);
 
         contextMenu.append(action);
 
@@ -988,7 +990,7 @@ describe("Main App Class Tests", () => {
         jest.spyOn(Journal, "showDialog").mockImplementation(async () => {});
 
         const fEvent = {
-            target: action
+            target: icon
         };
         //@ts-ignore
         ma.noteContextClick(fEvent);

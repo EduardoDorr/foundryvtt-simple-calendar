@@ -188,7 +188,7 @@ export default class MainApp extends FormApplication {
             }
         } else {
             for (let i = 0; i < this.addonButtons.length; i++) {
-                data.mainViewDisplay.addonButtons += `<button class="fsc-control fsc-grey fsc-addon-button ${this.addonButtons[i].customClass}" data-sc-abi="${i}" data-tooltip="${this.addonButtons[i].title}"><span class="fa ${this.addonButtons[i].iconClass}"></span></button>`;
+                data.mainViewDisplay.addonButtons += `<button class="fsc-control fsc-grey fsc-addon-button ${this.addonButtons[i].customClass}" data-sc-abi="${i}" data-tooltip="${this.addonButtons[i].title}"><span class="fa-solid ${this.addonButtons[i].iconClass}"></span></button>`;
                 if (this.addonButtons[i].showSidePanel) {
                     if (this.uiElementStates[`fsc-addon-button-side-drawer-${i}`] === undefined) {
                         this.uiElementStates[`fsc-addon-button-side-drawer-${i}`] = false;
@@ -1242,7 +1242,7 @@ export default class MainApp extends FormApplication {
                         //Update the reminder button to show the appropriate text and icon
                         const reminderAction = sidebarSection.querySelector('.fsc-context-list-action[data-action="remind"]');
                         if (reminderAction) {
-                            reminderAction.innerHTML = `<span class="fa ${noteStub.userReminderRegistered ? "fa-bell-slash" : "fa-bell"}"></span>${
+                            reminderAction.innerHTML = `<span class="fa-solid ${noteStub.userReminderRegistered ? "fa-bell-slash" : "fa-bell"}"></span>${
                                 noteStub.userReminderRegistered
                                     ? GameSettings.Localize("FSC.Notes.ReminderCancel")
                                     : GameSettings.Localize("FSC.Notes.Reminder")
@@ -1256,7 +1256,8 @@ export default class MainApp extends FormApplication {
     }
 
     public noteContextClick(e: Event) {
-        const target = <HTMLElement>e.target;
+        const clickedElement = <HTMLElement>e.target;
+        const target = clickedElement?.closest<HTMLElement>("[data-action]");
         const action = target?.getAttribute("data-action");
         if (target && action) {
             const contextMenu = target.closest(".fsc-context-menu");

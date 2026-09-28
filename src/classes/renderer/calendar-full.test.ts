@@ -210,11 +210,13 @@ describe('Renderer Calendar Full Class Tests', () => {
 
     test('Day Context Click', () => {
         const t = document.createElement('div');
+        const icon = document.createElement('span');
         const contextList = document.createElement('div');
         const wrapper = document.createElement('div');
         t.setAttribute('data-action', 'current');
         contextList.classList.add('fsc-day-context-list');
         contextList.setAttribute('data-date', '2022/8/14');
+        t.append(icon);
         contextList.append(t);
         wrapper.classList.add('fsc-calendar-wrapper');
         wrapper.setAttribute('data-calendar', 'default');
@@ -224,7 +226,7 @@ describe('Renderer Calendar Full Class Tests', () => {
         const fEvent = {
             stopPropagation: () => {},
             preventDefault: () => {},
-            target: t
+            target: icon
         };
         //@ts-ignore
         CalendarFull.DayContextClick(fEvent);
